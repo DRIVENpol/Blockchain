@@ -100,5 +100,14 @@ def get_full_chain():
                 }
     return jsonify(response), 200
 
+# Check if the blockchain is valid
+@app.route('/valid_blockchain', methods = ['GET'])
+def validate_blockchain():
+    is_valid = blockchain.validate_blockchain(blockchain.chain)
+    response = {
+                'isValid': is_valid
+                }
+    return jsonify(response), 200
+
 # Run the blockchain on local node
 app.run(host = '0.0.0.0', port = 5001)
